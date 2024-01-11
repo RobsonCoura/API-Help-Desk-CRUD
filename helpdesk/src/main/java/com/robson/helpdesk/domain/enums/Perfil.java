@@ -2,7 +2,7 @@ package com.robson.helpdesk.domain.enums;
 
 public enum Perfil {
 
-	BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
+	ADMIN(0, "ROLE_ADMIN"), CLIENTE(1, "ROLE_CLIENTE"), TECNICO(2, "ROLE_TECNICO");
 	
 	//Atributos - são as propriedades de um objeto
 	private Integer codigo;
@@ -36,7 +36,7 @@ public enum Perfil {
 				return x;
 			}
 			//Lancar uma exceção caso perfil de usuario seja invalido 
-			throw new IllegalArgumentException("Prioridade inválida!");
+			throw new IllegalArgumentException("Perfil inválido!");
 		}
 		return null;
 	}
