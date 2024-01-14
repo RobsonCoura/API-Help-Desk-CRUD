@@ -1,6 +1,7 @@
 package com.robson.helpdesk.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
@@ -15,6 +16,7 @@ public class TestConfig {
 	private DBService dbService;
 
 	// Método para instanciar no banco de dados
+	@Bean
 	public void instanciaDB() {
 		this.dbService.instanciaDB();
 	}
