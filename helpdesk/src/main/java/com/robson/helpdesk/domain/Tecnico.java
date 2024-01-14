@@ -28,9 +28,6 @@ public class Tecnico extends Pessoa {
         addPerfil(Perfil.CLIENTE);
     }
 
-//    public Tecnico(Tecnico obj) {
-//
-//    }
 
     // Getters e Setters - Acessar e modificar os atributos
     public List<Chamado> getChamados() {
