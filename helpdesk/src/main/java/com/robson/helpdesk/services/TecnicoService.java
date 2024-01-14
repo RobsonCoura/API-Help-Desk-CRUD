@@ -2,6 +2,7 @@ package com.robson.helpdesk.services;
 
 import com.robson.helpdesk.domain.Tecnico;
 import com.robson.helpdesk.repositories.TecnicoRepository;
+import com.robson.helpdesk.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class TecnicoService {
     //Método para buscar um tecnico pelo ID
     public Tecnico findById(Integer id) {
         Optional<Tecnico> obj = tecnicoRepository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado! ID: " + id));
     }
 
 }
