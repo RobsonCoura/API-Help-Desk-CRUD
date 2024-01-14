@@ -1,39 +1,44 @@
 package com.robson.helpdesk.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.robson.helpdesk.domain.enums.Perfil;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Tecnico extends Pessoa {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@OneToMany(mappedBy = "tecnico")
-	private List<Chamado> chamados = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "tecnico")
+    private List<Chamado> chamados = new ArrayList<>();
 
-	// Construtor sem argumentos
-	public Tecnico() {
-		super();
-		addPerfil(Perfil.CLIENTE);
-	}
+    // Construtor sem argumentos
+    public Tecnico() {
+        super();
+        addPerfil(Perfil.CLIENTE);
+    }
 
-	public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
-		super(id, nome, cpf, email, senha);
-		addPerfil(Perfil.CLIENTE);
-	}
+    public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
+        super(id, nome, cpf, email, senha);
+        addPerfil(Perfil.CLIENTE);
+    }
 
-	// Getters e Setters - Acessar e modificar os atributos
-	public List<Chamado> getChamados() {
-		return chamados;
-	}
+//    public Tecnico(Tecnico obj) {
+//
+//    }
 
-	public void setChamados(List<Chamado> chamados) {
-		this.chamados = chamados;
-	}
+    // Getters e Setters - Acessar e modificar os atributos
+    public List<Chamado> getChamados() {
+        return chamados;
+    }
+
+    public void setChamados(List<Chamado> chamados) {
+        this.chamados = chamados;
+    }
 
 }
