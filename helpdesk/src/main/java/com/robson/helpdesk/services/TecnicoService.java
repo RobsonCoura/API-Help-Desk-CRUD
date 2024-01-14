@@ -1,0 +1,23 @@
+package com.robson.helpdesk.services;
+
+import com.robson.helpdesk.domain.Tecnico;
+import com.robson.helpdesk.repositories.TecnicoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class TecnicoService {
+
+    //Injecao de dependencias
+    @Autowired
+    private TecnicoRepository tecnicoRepository;
+
+    //Método para buscar um tecnico pelo ID
+    public Tecnico findById(Integer id) {
+        Optional<Tecnico> obj = tecnicoRepository.findById(id);
+        return obj.orElse(null);
+    }
+
+}
