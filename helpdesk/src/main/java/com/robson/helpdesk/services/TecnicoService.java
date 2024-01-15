@@ -6,6 +6,7 @@ import com.robson.helpdesk.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,4 +22,8 @@ public class TecnicoService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado! ID: " + id));
     }
 
+    //Método que busca por todos os técnicos no banco
+    public List<Tecnico> findAll() {
+        return tecnicoRepository.findAll();
+    }
 }

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping(value = "/tecnicos")
 public class TecnicoResource {
@@ -24,4 +27,12 @@ public class TecnicoResource {
         return ResponseEntity.ok().body(new TecnicoDTO(obj));
     }
 
+    //Método que busca por todos os técnicos no banco
+    @GetMapping
+    public ResponseEntity<List<TecnicoDTO>> findAll() {
+        List<Tecnico> list = tecnicoService.findAll();
+        //Conversao de list de Tecnico para list TecnicoDTO
+        List<TecnicoDTO> listDTO = list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
+    }
 }
