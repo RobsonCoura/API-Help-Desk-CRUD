@@ -2,6 +2,7 @@ package com.robson.helpdesk.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.robson.helpdesk.domain.Tecnico;
+import com.robson.helpdesk.domain.enums.Perfil;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -22,10 +23,13 @@ public class TecnicoDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
+    // Construtor sem argumentos
     public TecnicoDTO() {
         super();
+        addPerfil(Perfil.CLIENTE);
     }
 
+    // Construtor com argumentos
     public TecnicoDTO(Tecnico obj) {
         this.id = obj.getId();
         this.nome = obj.getNome();
@@ -34,8 +38,10 @@ public class TecnicoDTO implements Serializable {
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
+        addPerfil(Perfil.CLIENTE);
     }
 
+    // Getters e Setters - Acessar e modificar os atributos
     public Integer getId() {
         return id;
     }
@@ -76,12 +82,12 @@ public class TecnicoDTO implements Serializable {
         this.senha = senha;
     }
 
-    public Set<Integer> getPerfis() {
-        return perfis;
+    public Set<Perfil> getPerfis() {
+        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
     }
 
-    public void setPerfis(Set<Integer> perfis) {
-        this.perfis = perfis;
+    public void addPerfil(Perfil perfil) {
+        this.perfis.add(perfil.getCodigo());
     }
 
     public LocalDate getDataCriacao() {

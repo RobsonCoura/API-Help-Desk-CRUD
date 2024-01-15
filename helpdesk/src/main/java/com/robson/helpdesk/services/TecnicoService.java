@@ -1,6 +1,7 @@
 package com.robson.helpdesk.services;
 
 import com.robson.helpdesk.domain.Tecnico;
+import com.robson.helpdesk.domain.dtos.TecnicoDTO;
 import com.robson.helpdesk.repositories.TecnicoRepository;
 import com.robson.helpdesk.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,12 @@ public class TecnicoService {
     public List<Tecnico> findAll() {
         return tecnicoRepository.findAll();
     }
+
+    //Método que cria um novo técnico
+    public Tecnico create(TecnicoDTO objDTO) {
+        objDTO.setId(null);
+        Tecnico newObj = new Tecnico(objDTO);
+        return tecnicoRepository.save(newObj);
+    }
+
 }
