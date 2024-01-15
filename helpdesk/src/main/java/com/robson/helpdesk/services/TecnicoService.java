@@ -1,8 +1,11 @@
 package com.robson.helpdesk.services;
 
+import com.robson.helpdesk.domain.Pessoa;
 import com.robson.helpdesk.domain.Tecnico;
 import com.robson.helpdesk.domain.dtos.TecnicoDTO;
+import com.robson.helpdesk.repositories.PessoaRepository;
 import com.robson.helpdesk.repositories.TecnicoRepository;
+import com.robson.helpdesk.services.exception.DataIntegrityViolationException;
 import com.robson.helpdesk.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,8 @@ public class TecnicoService {
     //Injecao de dependencias
     @Autowired
     private TecnicoRepository tecnicoRepository;
+    @Autowired
+    private PessoaRepository pessoaRepository;
 
     //Método para buscar um tecnico pelo ID
     public Tecnico findById(Integer id) {
@@ -31,8 +36,22 @@ public class TecnicoService {
     //Método que cria um novo técnico
     public Tecnico create(TecnicoDTO objDTO) {
         objDTO.setId(null);
+        validaPorCpfEEmail(objDTO);
         Tecnico newObj = new Tecnico(objDTO);
         return tecnicoRepository.save(newObj);
+    }
+
+    //Método que valida se CPF e E-mail já existe no banco de dados
+    private void validaPorCpfEEmail(TecnicoDTO objDTO) {
+        Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
+        //Verificacao se CPF existe
+        if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
+            throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
+        }
+        obj = pessoaRepository.findByEmail(objDTO.getEmail());
+        if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
+            throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
+        }
     }
 
 }
