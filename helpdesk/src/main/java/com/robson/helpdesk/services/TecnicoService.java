@@ -42,6 +42,7 @@ public class TecnicoService {
         return tecnicoRepository.save(newObj);
     }
 
+    //Método que atualiza um técnico
     public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
         objDTO.setId(id);
         Tecnico obj = findById(id);
