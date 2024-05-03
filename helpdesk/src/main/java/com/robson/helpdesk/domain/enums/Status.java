@@ -23,6 +23,14 @@ public enum Status {
         return descricao;
     }
 
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     // Método para retornar o tipo de status do chamado
     public static Status toEnum(Integer cod) {
         // Validacao do perfil
