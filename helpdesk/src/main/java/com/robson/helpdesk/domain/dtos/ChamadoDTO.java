@@ -2,8 +2,8 @@ package com.robson.helpdesk.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.robson.helpdesk.domain.Chamado;
-import com.robson.helpdesk.domain.enums.Status;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -17,11 +17,17 @@ public class ChamadoDTO implements Serializable {
     private LocalDate dataAbertura = LocalDate.now();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
+    @NotNull(message = "O campo PRIORIDADE é requerido")
     private Integer prioridade;
-    private Status status;
+    @NotNull(message = "O campo STATUS é requerido")
+    private Integer status;
+    @NotNull(message = "O campo TITULO é requerido")
     private String titulo;
+    @NotNull(message = "O campo OBSERVACOES é requerido")
     private String observacoes;
+    @NotNull(message = "O campo TECNICO é requerido")
     private Integer tecnico;
+    @NotNull(message = "O campo CLIENTE é requerido")
     private Integer cliente;
     private String nomeTecnico;
     private String nomeCliente;
@@ -37,9 +43,9 @@ public class ChamadoDTO implements Serializable {
         this.dataAbertura = obj.getDataAbertura();
         this.dataFechamento = obj.getDataFechamento();
         this.prioridade = obj.getPrioridade().getCodigo();
-        this.status = obj.getStatus();
         this.titulo = obj.getTitulo();
         this.observacoes = obj.getObservacoes();
+        this.status = status;
         this.tecnico = obj.getTecnico().getId();
         this.cliente = obj.getCliente().getId();
         this.nomeTecnico = obj.getCliente().getNome();
@@ -80,11 +86,11 @@ public class ChamadoDTO implements Serializable {
         this.prioridade = prioridade;
     }
 
-    public Status getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
