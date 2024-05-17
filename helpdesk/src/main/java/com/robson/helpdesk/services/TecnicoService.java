@@ -8,6 +8,7 @@ import com.robson.helpdesk.repositories.TecnicoRepository;
 import com.robson.helpdesk.services.exception.DataIntegrityViolationException;
 import com.robson.helpdesk.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -22,6 +23,8 @@ public class TecnicoService {
     private TecnicoRepository tecnicoRepository;
     @Autowired
     private PessoaRepository pessoaRepository;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     //Método para buscar um tecnico pelo ID
     public Tecnico findById(Integer id) {
@@ -37,6 +40,7 @@ public class TecnicoService {
     //Método que cria um novo técnico
     public Tecnico create(TecnicoDTO objDTO) {
         objDTO.setId(null);
+        objDTO.setSenha(encoder.encode(objDTO.getSenha()));
         validaPorCpfEEmail(objDTO);
         Tecnico newObj = new Tecnico(objDTO);
         return tecnicoRepository.save(newObj);

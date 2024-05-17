@@ -8,6 +8,7 @@ import com.robson.helpdesk.repositories.PessoaRepository;
 import com.robson.helpdesk.services.exception.DataIntegrityViolationException;
 import com.robson.helpdesk.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -22,6 +23,8 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
     @Autowired
     private PessoaRepository pessoaRepository;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     //Método para buscar um cliente pelo ID
     public Cliente findById(Integer id) {
@@ -37,6 +40,7 @@ public class ClienteService {
     //Método que cria um novo cliente
     public Cliente create(ClienteDTO objDTO) {
         objDTO.setId(null);
+        objDTO.setSenha(encoder.encode(objDTO.getSenha()));
         validaPorCpfEEmail(objDTO);
         Cliente newObj = new Cliente(objDTO);
         return clienteRepository.save(newObj);
