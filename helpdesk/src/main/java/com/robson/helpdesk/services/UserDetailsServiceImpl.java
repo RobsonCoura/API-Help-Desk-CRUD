@@ -17,12 +17,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PessoaRepository repository;
 
+    // Este método recebe um email e carrega os detalhes do usuário correspondente. Pode lançar uma exceção UsernameNotFoundException se o usuário não for encontrado.
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Pessoa> user = repository.findByEmail(email);
+        Optional<Pessoa> user = repository.findByEmail(email); // Verifica se o Optional contém um valor (ou seja, se um usuário com o email fornecido foi encontrado).
         if (user.isPresent()) {
-            return new UserSpringSecurity(user.get().getId(), user.get().getEmail(), user.get().getSenha(), user.get().getPerfis());
+            return new UserSpringSecurity(user.get().getId(), user.get().getEmail(), user.get().getSenha(), user.get().getPerfis()); // Se o usuário estiver presente, cria e retorna uma nova instância, passa-se o ID, email, senha e perfis (roles) do usuário encontrado.
         }
-        throw new UsernameNotFoundException(email);
+        throw new UsernameNotFoundException(email); // Se o usuário não for encontrado, lança uma exceção com o email fornecido, indicando que o usuário não pôde ser encontrado.
     }
 }
