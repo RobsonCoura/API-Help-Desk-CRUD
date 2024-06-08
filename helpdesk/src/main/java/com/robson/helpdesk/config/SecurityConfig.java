@@ -1,11 +1,13 @@
 package com.robson.helpdesk.config;
 
 import com.robson.helpdesk.security.JWTAuthenticationFilter;
+import com.robson.helpdesk.security.JWTAuthorizationFilter;
 import com.robson.helpdesk.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,7 +21,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 
+// Habilita a configuração de segurança da web no Spring Security
 @EnableWebSecurity
+// Habilita a segurança de método global, permitindo o uso de anotações de segurança como @PreAuthorize
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
@@ -43,6 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable();
         // Adiciona o filtro de autenticação JWT ao processo de segurança
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+        // Adiciona o filtro JWTAuthorizationFilter para autorização JWT
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
         // Configura as regras de autorização para as requisições HTTP
         http.authorizeRequests()
                 // Permite acesso irrestrito aos endpoints definidos em PUBLIC_MATCHERS
