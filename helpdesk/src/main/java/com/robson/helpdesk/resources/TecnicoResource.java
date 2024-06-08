@@ -5,6 +5,7 @@ import com.robson.helpdesk.domain.dtos.TecnicoDTO;
 import com.robson.helpdesk.services.TecnicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -21,6 +22,7 @@ public class TecnicoResource {
     private TecnicoService tecnicoService;
 
     //Método para buscar um tecnico pelo ID
+    // Mapeia solicitações HTTP GET para este endpoint
     @GetMapping(value = "/{id}")
     public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
         Tecnico obj = tecnicoService.findById(id);
@@ -28,6 +30,7 @@ public class TecnicoResource {
     }
 
     //Método que busca por todos os técnicos no banco
+    // Mapeia solicitações HTTP GET para este endpoint
     @GetMapping
     public ResponseEntity<List<TecnicoDTO>> findAll() {
         List<Tecnico> list = tecnicoService.findAll();
@@ -37,7 +40,9 @@ public class TecnicoResource {
     }
 
     //Método que cria um novo técnico
-    @PostMapping
+    // Restringe o acesso ao endpoint de exclusão apenas para usuários com a função 'ADMIN'
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PostMapping // Mapeia solicitações HTTP POST para este endpoint
     public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO) {
         Tecnico newObj = tecnicoService.create(objDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(newObj.getId()).toUri();
@@ -45,14 +50,18 @@ public class TecnicoResource {
     }
 
     //Método que atualiza um técnico
-    @PutMapping(value = "/{id}")
+    // Restringe o acesso ao endpoint de exclusão apenas para usuários com a função 'ADMIN'
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PutMapping(value = "/{id}") // Mapeia solicitações HTTP PUT para este endpoint
     public ResponseEntity<TecnicoDTO> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDTO) {
         Tecnico obj = tecnicoService.update(id, objDTO);
         return ResponseEntity.ok().body(new TecnicoDTO(obj));
     }
 
     //Método que deleta um técnico
-    @DeleteMapping(value = "/{id}")
+    // Restringe o acesso ao endpoint de exclusão apenas para usuários com a função 'ADMIN'
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @DeleteMapping(value = "/{id}") // Mapeia solicitações HTTP DELETE para este endpoint
     public ResponseEntity<TecnicoDTO> delete(@PathVariable Integer id) {
         tecnicoService.delete(id);
         return ResponseEntity.noContent().build();
