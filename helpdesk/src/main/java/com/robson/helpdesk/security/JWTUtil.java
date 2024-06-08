@@ -23,6 +23,6 @@ public class JWTUtil {
                 .setSubject(email) // Define o "subject" (assunto) do token como sendo o email passado como argumento.
                 .setExpiration(new Date(System.currentTimeMillis() + expiration)) //Define a data de expiração do token.
                 .signWith(SignatureAlgorithm.HS512, secret.getBytes()) //Converte a chave secreta (secret) para um array de bytes.
-                .compact();
+                .compact();// Esse método compact ele compacta o corpo do JWT deixando a API mas perfomática.
     }
 }
