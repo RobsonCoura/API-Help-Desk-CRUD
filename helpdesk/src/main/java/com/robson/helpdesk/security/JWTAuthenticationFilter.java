@@ -8,8 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -42,5 +45,17 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             throw new RuntimeException(e);
         }
     }
-    
+
+    // Método chamado quando a autenticação é bem-sucedida
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        // Obtém o nome de usuário a partir do principal do objeto de autenticação
+        String username = ((UserSpringSecurity) authResult.getPrincipal()).getUsername();
+        // Gera um token JWT para o usuário autenticado
+        String token = jwtUtil.generateToken(username);
+        // Define cabeçalhos na resposta para expor o token JWT
+        response.setHeader("access-control-expose-headers", "Authorization");
+        // Adiciona o token JWT ao cabeçalho Authorization
+        response.setHeader("Authorization", "Bearer " + token);
+    }
 }
