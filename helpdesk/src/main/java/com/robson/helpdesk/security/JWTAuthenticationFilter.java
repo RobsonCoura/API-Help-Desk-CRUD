@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -57,5 +58,29 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setHeader("access-control-expose-headers", "Authorization");
         // Adiciona o token JWT ao cabeçalho Authorization
         response.setHeader("Authorization", "Bearer " + token);
+    }
+
+    // Método chamado quando a autenticação falha
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        // Define o status da resposta para 401 (Não autorizado)
+        response.setStatus(401);
+        // Define o tipo de conteúdo da resposta como JSON
+        response.setContentType("application/json");
+        // Escreve uma mensagem de erro JSON no corpo da resposta
+        response.getWriter().append(json());
+    }
+
+    // Método auxiliar que cria uma mensagem de erro em formato JSON
+    private CharSequence json() {
+        // Obtém o timestamp atual
+        long date = new Date().getTime();
+        // Retorna a mensagem de erro JSON
+        return "{"
+                + "\"timestamp\": " + date + ", "
+                + "\"status\": 401, "
+                + "\"error\": \"Não autorizado\", "
+                + "\"message\": \"Email ou senha invalidos\", "
+                + "\"path\": \"/login\"}";
     }
 }
