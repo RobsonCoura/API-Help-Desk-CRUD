@@ -17,15 +17,17 @@ RUN apt-get install maven -y
 RUN mvn clean install
 
 # Imagem que vai utilizar para rodar a aplicação
-FROM openjdk:11-jdk-slim
+FROM openjdk:11-jre-slim
 
 # Expor a porta 8080
 EXPOSE 8080
 
-# Copiar tudo que tem dentro da pasta target e colar no contêiner para executar o arquivo
-COPY --from=build /target/helpdesk-0.0.1-SNAPSHOT.jar app.jar
+# Copiar o arquivo JAR para dentro da imagem
+COPY --from=build /target/helpdesk-0.0.1-SNAPSHOT.jar /app.jar
 
 # Configuração do que você quer que execute
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
 
+# Comando para executar o aplicativo quando o contêiner for iniciado
+CMD ["java", "-jar", "/app.jar"]
 
