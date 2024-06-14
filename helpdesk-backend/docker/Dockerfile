@@ -11,13 +11,13 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copiar o arquivo pom.xml separadamente para evitar re-instalação de dependências quando apenas os arquivos de código fonte forem alterados
-COPY pom.xml .
+COPY ../pom.xml .
 
 # Baixar as dependências do Maven (somente pom.xml é necessário aqui)
 RUN mvn dependency:go-offline
 
 # Copiar todo o código fonte
-COPY src ./src
+COPY ../src ./src
 
 # Compilar o projeto e gerar o arquivo JAR
 RUN mvn clean package
