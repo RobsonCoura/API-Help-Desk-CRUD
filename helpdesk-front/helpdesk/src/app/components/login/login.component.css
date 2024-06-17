@@ -1,34 +1,40 @@
+/* Estiliza o contêiner principal */
 .container {
-    height: 100%;
-    background: linear-gradient(95deg, rgba(78,202,212,1) 0%, rgba(40,233,176,1) 0%, rgba(64,0,255,1) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 100%; /* Define a altura completa */
+    background: linear-gradient(95deg, rgba(78,202,212,1) 0%, rgba(40,233,176,1) 0%, rgba(64,0,255,1) 100%); /* Aplica um gradiente de fundo */
+    display: flex; /* Usa flexbox para alinhar o conteúdo */
+    align-items: center; /* Alinha os itens ao centro verticalmente */
+    justify-content: center; /* Alinha os itens ao centro horizontalmente */
 }
 
+/* Estiliza o formulário */
 .form {
-    width: 30rem;
-    margin: auto;
-    background-color: rgb(220, 220, 220);
-    padding: 4rem 1rem;
-    border-radius: 1rem;
+    width: 30rem; /* Define a largura do formulário */
+    margin: auto; /* Centraliza o formulário */
+    background-color: rgb(220, 220, 220); /* Define a cor de fundo do formulário */
+    padding: 4rem 1rem; /* Adiciona espaçamento interno */
+    border-radius: 1rem; /* Adiciona bordas arredondadas */
 }
 
+/* Estiliza o título */
 h1 {
-    width: 100%;
-    text-align: center;
+    width: 100%; /* Define a largura total */
+    text-align: center; /* Centraliza o texto */
 }
 
+/* Estiliza a imagem */
 img {
-    height: 15rem;
-    width: 100%;
-    margin: 1.5rem auto 1.5rem auto;
+    height: 15rem; /* Define a altura da imagem */
+    width: 100%; /* Define a largura total */
+    margin: 1.5rem auto; /* Adiciona margens superior e inferior e centraliza horizontalmente */
 }
 
+/* Classe utilitária para definir largura completa */
 .full-width {
-    width: 100%;
+    width: 100%; /* Define a largura total */
 }
 
+/* Estiliza o botão */
 button {
-    margin-top: 1.5rem;
+    margin-top: 1.5rem; /* Adiciona margem superior */
 }
