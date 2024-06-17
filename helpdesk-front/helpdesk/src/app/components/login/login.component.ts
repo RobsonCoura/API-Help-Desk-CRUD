@@ -1,49 +1,43 @@
+// Importações e configurações de módulos
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { Credenciais } from 'src/app/models/credenciais';
 
-// Define um componente Angular
+// Definição do componente com seletor, template e estilos
 @Component({
-  selector: 'app-login', // Seletor do componente
-  templateUrl: './login.component.html', // Template HTML do componente
-  styleUrls: ['./login.component.css'] // Arquivo de estilos CSS do componente
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  // Define um objeto de credenciais inicializado com valores vazios
+  // Inicialização das credenciais
   creds: Credenciais = {
     email: '',
     senha: ''
-  }
+  };
 
-  // Define um controle de formulário para o email com validação de email
+  // Definição dos controles de formulário com validações
   email = new FormControl(null, Validators.email);
-  // Define um controle de formulário para a senha com validação de comprimento mínimo de 3 caracteres
   senha = new FormControl(null, Validators.minLength(3));
 
-  // Construtor injeta o serviço de notificação ToastrService
+  // Injeta o serviço ToastrService para notificações
   constructor(private toast: ToastrService) { }
 
-  // Método ngOnInit é chamado após a inicialização do componente
   ngOnInit(): void {
+    // Inicialização adicional, se necessário
   }
 
-  // Método para realizar o login
+  // Método para realizar login
   logar() {
-    // Exibe uma mensagem de erro se as credenciais forem inválidas
+    // Exibe uma mensagem de erro e limpa a senha
     this.toast.error('Usuário e/ou senha inválidos!', 'Login');
-    // Reseta a senha no objeto de credenciais
     this.creds.senha = '';
   }
 
-  // Método para validar se os campos de email e senha são válidos
+  // Valida se os campos de email e senha são válidos
   validaCampos(): boolean {
-    // Retorna true se ambos os campos forem válidos, caso contrário retorna false
-    if (this.email.valid && this.senha.valid) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.email.valid && this.senha.valid;
   }
 }

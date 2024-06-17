@@ -1,16 +1,14 @@
-/* Importa o arquivo de estilos do ngx-toastr para notificações */
+/* Importa os estilos do ngx-toastr para notificações */
 @import '../node_modules/ngx-toastr/toastr.css';
 
-/* Define a altura de 100% para os elementos html e body para ocupar toda a altura da janela */
+/* Define altura completa para html e body */
 html,
 body {
     height: 100%;
 }
 
-/* Remove a margem padrão do body e define a fonte padrão */
+/* Estilo base para o body */
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-/* Define a fonte padrão para o body */
