@@ -1,8 +1,12 @@
+/* Estilos para a classe .container */
 .container {
+    /* Define a largura como 90% e centraliza horizontalmente */
     width: 90%;
-    margin: auto;
+    margin: auto; /* Margem automática para centralizar horizontalmente */
 }
 
+/* Estilos para todas as tabelas */
 table {
+    /* Define a largura como 100% para ocupar todo o espaço disponível */
     width: 100%;
 }
