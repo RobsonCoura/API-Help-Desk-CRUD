@@ -33,6 +33,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TecnicoListComponent } from './components/tecnico/tecnico-list/tecnico-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -69,15 +70,12 @@ import { ToastrModule } from 'ngx-toastr';
     MatCardModule,
     // Configurações do módulo principal da aplicação Angular
     ToastrModule.forRoot({
-      // Define o tempo de exibição das notificações (em milissegundos)
-      timeOut: 40000,
-      // Exibe um botão para fechar a notificação
-      closeButton: true,
-      // Exibe uma barra de progresso nas notificações
-      progressBar: true
+      timeOut: 40000,  // Define o tempo de exibição das notificações (em milissegundos)
+      closeButton: true, // Exibe um botão para fechar a notificação
+      progressBar: true // Exibe uma barra de progresso nas notificações
     })
   ],
-  providers: [], // Declaração dos provedores de serviços
+  providers: [AuthInterceptorProvider], // Declaração dos provedores de serviços
   bootstrap: [AppComponent] // Componente raiz que será inicializado no bootstrap
 })
 // Exporta a classe do módulo principal da aplicação
