@@ -42,4 +42,10 @@ export class AuthService {
     }
     return false;  // Retorna falso se não houver token no localStorage
   }
+
+  // Método para realizar logout do usuário
+  logout() {
+    localStorage.clear(); // Limpa todos os dados armazenados no localStorage
+  }
+
 }
