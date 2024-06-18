@@ -7,6 +7,22 @@
 
 /* Estilos para todas as tabelas */
 table {
-    /* Define a largura como 100% para ocupar todo o espaço disponível */
-    width: 100%;
+    width: 100%;  /* Define a largura como 100% para ocupar todo o espaço disponível */
+}
+
+/* Define a largura dos campos de formulário de material design */
+mat-form-field {
+    width: 100%;  /* Ocupa 100% da largura do contêiner pai */
+}
+ 
+/* Define a largura dos botões */
+button {
+    width: 100%;  /* Ocupa 100% da largura do contêiner pai */
+}
+ 
+/* Estiliza o cabeçalho h1 */
+h1 {
+    width: 100%;  /* Ocupa 100% da largura do contêiner pai */
+    text-align: center;  /* Centraliza o texto */
+    margin-bottom: 2rem;  /* Adiciona uma margem inferior de 2 rem */
 }

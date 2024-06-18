@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Tecnico } from 'src/app/models/tecnico'; // Importa o modelo Tecnico
+import { TecnicoService } from 'src/app/services/tecnico.service';
 
 // Decorador @Component para o componente TecnicoListComponent
 @Component({
@@ -13,35 +14,38 @@ import { Tecnico } from 'src/app/models/tecnico'; // Importa o modelo Tecnico
 export class TecnicoListComponent implements OnInit {
 
   // Dados de exemplo para a tabela
-  ELEMENT_DATA: Tecnico[] = [
-    {
-      id: 1,
-      nome: 'Robson Cezar',
-      cpf: '123.456.789-10',
-      email: 'robson@email.com',
-      senha: '1234',
-      perfis: ['0'],
-      dataCriacao: '15/08/2022'
-    }
-  ];
+  ELEMENT_DATA: Tecnico[] = []
 
-  // Colunas exibidas na tabela
-  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'acoes'];
 
-  // Fonte de dados da tabela do tipo MatTableDataSource com os dados iniciais ELEMENT_DATA
-  dataSource = new MatTableDataSource<Tecnico>(this.ELEMENT_DATA);
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'acoes']; // Colunas exibidas na tabela
+  dataSource = new MatTableDataSource<Tecnico>(this.ELEMENT_DATA);  // Fonte de dados da tabela do tipo MatTableDataSource com os dados iniciais ELEMENT_DATA
 
-  constructor() { }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator; // ViewChild para obter a instância do paginador MatPaginator da visualização
+  constructor(
+    private service: TecnicoService
+  ) { }
+
+  // Método do ciclo de vida OnInit para inicializações adicionais
   ngOnInit(): void {
+    this.findAll(); // Chama o método findAll para buscar todos os técnicos
   }
 
-  // ViewChild para obter a instância do paginador MatPaginator da visualização
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  // Método ngAfterViewInit para configurar o paginador após a visualização do componente
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  // Método para buscar todos os técnicos do serviço
+  findAll() {
+    // Chama o método findAll do serviço, que retorna um Observable
+    this.service.findAll().subscribe(resposta => {
+      this.ELEMENT_DATA = resposta; // Armazena a resposta (lista de técnicos) em ELEMENT_DATA
+      this.dataSource = new MatTableDataSource<Tecnico>(resposta); // Cria uma nova fonte de dados para a tabela com os técnicos recebidos
+      this.dataSource.paginator = this.paginator; // Define o paginador da tabela
+    });
   }
+
+  // Método para aplicar filtro na tabela com base no evento de entrada do usuário
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value; // Obtém o valor do filtro digitado pelo usuário
+    this.dataSource.filter = filterValue.trim().toLowerCase();     // Aplica o filtro à fonte de dados da tabela, convertendo o valor para minúsculas e removendo espaços em branco
+  }
+
 
 }

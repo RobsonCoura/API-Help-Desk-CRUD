@@ -1,5 +1,23 @@
 <!-- Container principal -->
 <div class="container">
+
+    <!-- Cabeçalho principal da página -->
+    <h1>Listando Técnicos</h1>
+
+    <!-- Botão para adicionar um novo técnico -->
+    <button class="mat-elevation-z8" mat-stroked-button color="primary">
+        Novo técnico
+    </button>
+
+    <!-- Campo de formulário para filtragem -->
+    <mat-form-field appearance="standard">
+        <!-- Rótulo do campo de filtragem -->
+        <mat-label>Filter</mat-label>
+        <!-- Campo de entrada para digitar o filtro -->
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+
     <!-- Elemento com elevação z-depth 8 -->
     <div class="mat-elevation-z8">
 
