@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth/auth.guard'; // Importa o guarda de autenticação
 import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
 import { TecnicoUpdateComponent } from './components/tecnico/tecnico-update/tecnico-update.component';
+import { TecnicoDeleteComponent } from './components/tecnico/tecnico-delete/tecnico-delete.component';
 
 // Definição das rotas da aplicação
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent }, // Rota filha para o componente Home
       { path: 'tecnicos', component: TecnicoListComponent }, // Rota filha para o componente TecnicoListComponent
       { path: 'tecnicos/create', component: TecnicoCreateComponent }, // Rota filha para o componente TecnicoListComponent
-      { path: 'tecnicos/update/:id', component: TecnicoUpdateComponent }
+      { path: 'tecnicos/update/:id', component: TecnicoUpdateComponent },
+      { path: 'tecnicos/delete/:id', component: TecnicoDeleteComponent }
     ]
   }
 ];
