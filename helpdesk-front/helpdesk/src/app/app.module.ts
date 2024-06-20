@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { NgxMaskModule} from 'ngx-mask/lib/ngx-mask.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 // Para trabalhar com formulários no Angular 12
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -35,6 +37,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
+
 
 @NgModule({
   declarations: [
@@ -70,12 +73,14 @@ import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecn
     MatIconModule,
     MatListModule,
     MatCardModule,
+
     // Configurações do módulo principal da aplicação Angular
     ToastrModule.forRoot({
       timeOut: 40000,  // Define o tempo de exibição das notificações (em milissegundos)
       closeButton: true, // Exibe um botão para fechar a notificação
       progressBar: true // Exibe uma barra de progresso nas notificações
-    })
+    }), 
+    NgxMaskModule.forRoot(),
   ],
   providers: [AuthInterceptorProvider], // Declaração dos provedores de serviços
   bootstrap: [AppComponent] // Componente raiz que será inicializado no bootstrap
