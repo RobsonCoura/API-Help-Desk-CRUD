@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent }, // Rota filha para o componente Home
       { path: 'tecnicos', component: TecnicoListComponent }, // Rota filha para o componente TecnicoListComponent
       { path: 'tecnicos/create', component: TecnicoCreateComponent }, // Rota filha para o componente TecnicoListComponent
-      { path: 'tecnicos/update', component: TecnicoUpdateComponent }
+      { path: 'tecnicos/update/:id', component: TecnicoUpdateComponent }
     ]
   }
 ];
