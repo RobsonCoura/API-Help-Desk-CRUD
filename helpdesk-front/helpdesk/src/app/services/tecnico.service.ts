@@ -9,9 +9,17 @@ import { Tecnico } from '../models/tecnico';
   providedIn: 'root'  // O serviço é registrado no nível raiz, tornando-o disponível em toda a aplicação
 })
 export class TecnicoService {
-  constructor(private http: HttpClient) { } // Construtor para injeção do HttpClient
-  // Método para buscar todos os técnicos
+  // Injeção de dependência do HttpClient
+  constructor(private http: HttpClient) { }
+
+   // Método para buscar todos os técnicos
   findAll(): Observable<Tecnico[]> {
     return this.http.get<Tecnico[]>(`${API_CONFIG.BASE_URL}/tecnicos`); // Faz uma solicitação GET para a API e retorna um Observable contendo a lista de técnicos
   }
+
+   // Método para cadastrar um novo técnico
+  create(tecnico: Tecnico): Observable<Tecnico> {
+    return this.http.post<Tecnico>(`${API_CONFIG.BASE_URL}/tecnicos`, tecnico);
+  }
+
 }
