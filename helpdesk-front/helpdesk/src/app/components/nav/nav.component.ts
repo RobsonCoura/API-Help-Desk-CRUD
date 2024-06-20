@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
 
   // Método executado quando o componente é inicializado
   ngOnInit(): void {
-    this.router.navigate(['tecnicos/create']); // Navega para a rota 'home' ao inicializar
+    this.router.navigate(['tecnicos']); // Navega para a rota 'home' ao inicializar
   }
 
   // Método para realizar logout do usuário

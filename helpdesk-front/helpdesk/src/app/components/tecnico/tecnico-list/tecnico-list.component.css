@@ -26,3 +26,13 @@ h1 {
     text-align: center;  /* Centraliza o texto */
     margin-bottom: 2rem;  /* Adiciona uma margem inferior de 2 rem */
 }
+
+/* Estilos para a classe .edit */
+.edit {
+    color: rgba(64,0,255,1); 
+}
+
+/* Estilos para a classe .delete */
+.delete {
+    color: red;
+}
