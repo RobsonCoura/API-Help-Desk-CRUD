@@ -33,4 +33,9 @@ export class TecnicoService {
     return this.http.put<Tecnico>(`${API_CONFIG.BASE_URL}/tecnicos/${tecnico.id}`, tecnico);
   }
 
+  // Método para deletar um técnico
+  delete(id: any): Observable<Tecnico> {
+    return this.http.delete<Tecnico>(`${API_CONFIG.BASE_URL}/tecnicos/${id}`);
+  }
+
 }
