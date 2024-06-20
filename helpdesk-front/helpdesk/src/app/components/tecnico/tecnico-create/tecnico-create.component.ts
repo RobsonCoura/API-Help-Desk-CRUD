@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -40,35 +41,19 @@ export class TecnicoCreateComponent implements OnInit {
     // Hook de ciclo de vida, lógica de inicialização pode ser colocada aqui
   }
 
-  // Método para criar um novo técnico
   create(): void {
-    this.service.create(this.tecnico).subscribe(
-      () => {
-        this.toast.success('Técnico cadastrado com sucesso', 'Cadastro'); // Toast de sucesso
-        this.router.navigate(['tecnicos']); // Redireciona para lista de técnicos
-      },
-      (error) => {
-        console.error('Erro ao criar técnico:', error); // Log do erro para depuração
-        const errorMessage = this.getErrorMessage(error); // Obtém mensagem de erro
-        if (errorMessage) {
-          this.toast.error(errorMessage); // Exibe toast de erro
-        }
+    this.service.create(this.tecnico).subscribe(() => {
+      this.toast.success('Técnico cadastrado com sucesso', 'Cadastro');
+      this.router.navigate(['tecnicos'])
+    }, ex => {
+      if (ex.error.errors) {
+        ex.error.errors.forEach(element => {
+          this.toast.error(element.massage);
+        });
+      } else {
+        this.toast.error(ex.error.massage);
       }
-    );
-  }
-
-  // Método privado para obter mensagem de erro detalhada
-  private getErrorMessage(error: any): string {
-    if (!error) return 'Ocorreu um erro ao processar a requisição.';
-    if (error.error && Array.isArray(error.error.errors)) {
-      error.error.errors.forEach((element: any) => {
-        if (element.message) this.toast.error(element.message);
-      });
-      return '';
-    }
-    return error.error?.massage || error.error?.message || typeof error.error === 'string'
-      ? error.error.massage || error.error.message || error.error
-      : error.message || 'Ocorreu um erro ao processar a requisição.';
+    })
   }
 
   // Adiciona ou remove um perfil do técnico
