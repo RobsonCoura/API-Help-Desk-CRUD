@@ -72,21 +72,21 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 
 2. O sistema deve possuir uma funcionalidade que faz uma validacao de nivel de PERMISSAO de usuario no sistema:
 
-- ADMIN
-- CLIENTE
-- TECNICO
+- Admin
+- Cliente
+- Tecnico
 
 3. O sistema deve possuir uma funcionalidade que faz uma verificacao de nivel de PRIORIDADE no chamado do sistema:
 
-- BAIXA
-- MEDIA
-- ALTA
+- Baixa
+- Média
+- Alta
 
 4. O sistema deve possuir uma funcionalidade que faz uma verificacao de nivel do STATUS do chamado no sistema:
 
-- ABERTO
-- EM ANDAMENTO
-- ALTA
+- Aberto
+- Em andamento
+- Alta
 
 ### Neste projeto foi praticado:
 <ul>
