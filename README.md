@@ -9,9 +9,11 @@
 
 ## Sobre o projeto
 
-Projeto desenvolvido em Java utilizando SpringBoot e Angular para construção de uma API Help Desk.
-<br>É possível cadastrar técnicos e clientes, bem como visualizar chamados.
-O projeto possui conexão com banco de dados MySQL, security, testes e documentação.
+O projeto Helpdesk é uma plataforma de suporte técnico que foi projetada para facilitar a gestão de tickets de atendimento ao cliente.
+
+A origem dessa API está centrada na criação de um sistema eficiente para registrar, monitorar e resolver problemas reportados por usuários, fornecendo um meio estruturado para equipes de suporte técnico gerenciarem suas interações e resolverem solicitações de maneira organizada.
+
+Ela possibilita respostas rápidas e organizadas às solicitações de suporte, essencial para empresas que buscam otimizar seu serviço ao cliente e manter uma comunicação eficaz.
 
 ## ⚙️ Funcionalidades
 
