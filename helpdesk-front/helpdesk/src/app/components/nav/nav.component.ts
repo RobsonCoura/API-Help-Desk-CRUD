@@ -20,14 +20,14 @@ export class NavComponent implements OnInit {
 
   // Método executado quando o componente é inicializado
   ngOnInit(): void {
-    this.router.navigate(['chamados/read/1']); // Navega para a rota 'home' ao inicializar
+    this.router.navigate(['home']); // Navega para a rota 'home' ao inicializar
   }
 
   // Método para realizar logout do usuário
   logout() {
     this.router.navigate(['login']); // Navega para a rota de login
     this.authService.logout(); // Chama o serviço de logout do AuthService para limpar dados de autenticação
-    this.toast.info('Logout realizado com sucesso', 'Logout', { timeOut: 7000 });  // Exibe uma mensagem informando que o logout foi realizado com sucesso
+    this.toast.info('Logout realizado com sucesso', 'Logout', { timeOut: 5000 });  // Exibe uma mensagem informando que o logout foi realizado com sucesso
   }
 
 }
