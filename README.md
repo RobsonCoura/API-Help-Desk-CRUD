@@ -43,6 +43,7 @@ Para acessar o Swagger: <a href="">Swagger UI</a>
 
 As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do projeto:
 
+### Back-End
 - **[Java 11](https://www.oracle.com/java)**
 - **[Spring Boot](https://spring.io/projects/spring-boot)**
 - **[Intellij IDEA](https://www.jetbrains.com/help/idea/getting-started.html)**
@@ -50,15 +51,18 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 - **[JPA/Hibernate](https://hibernate.org/)**
 - **[MySQL](https://www.mysql.com)**
 - **[H2-dataBase](https://www.h2database.com/html/main.html)**
-- **[TypeScript](https://www.typescriptlang.org/docs/)**
-- **[HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)**
-- **[CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)**
-- **[Angular](https://projectlombok.org](https://angular.dev/))**
 - **[JWT](https://jwt.io/)**
 - **[Postman](https://learning.postman.com/docs/introduction/overview/)**
+- **[Docker](https://docs.docker.com/)**
 - **[Git](https://git-scm.com/doc)**
 - **[GitHub](https://github.com/)**
 - **[Render](https://render.com/)**
+
+### Front-End
+- **[Angular 12](https://projectlombok.org](https://angular.dev/))**
+- **[HTML](https://www.w3schools.com/w3css/w3css_downloads.asp)**
+- **[CSS](https://www.w3schools.com/w3css/w3css_downloads.asp)**
+- **[TypeScript](https://www.w3schools.com/w3css/w3css_downloads.asp)**
 - **[Vercel](https://vercel.com/docs)**
 
 ---
