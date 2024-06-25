@@ -38,3 +38,7 @@ img {
 button {
     margin-top: 1.5rem; /* Adiciona margem superior */
 }
+
+mat-icon {
+    opacity: .6;
+}
