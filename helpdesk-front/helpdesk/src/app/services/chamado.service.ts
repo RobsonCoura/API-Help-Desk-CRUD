@@ -15,4 +15,10 @@ export class ChamadoService {
   findAll(): Observable<Chamado[]> {
     return this.http.get<Chamado[]>(`${API_CONFIG.BASE_URL}/chamados`);
   }
+
+  // Envia uma requisição POST para criar um novo chamado
+  create(chamado: Chamado): Observable<Chamado> {
+    return this.http.post<Chamado>(`${API_CONFIG.BASE_URL}/chamados`, chamado);
+  }
+
 }

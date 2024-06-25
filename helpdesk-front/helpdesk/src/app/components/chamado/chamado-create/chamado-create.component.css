@@ -33,7 +33,7 @@ img {
 }
 
 /* Define altura mínima e máxima para a classe descricao */
-.descricao {
+.observacoes {
     min-height: 6rem; /* Define a altura mínima como 6rem */
     max-height: 10rem; /* Define a altura máxima como 10rem */
 }
